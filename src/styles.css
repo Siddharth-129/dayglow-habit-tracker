@@ -1,0 +1,328 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * Keep every @import in this top block. Web fonts load via <link> in src/routes/__root.tsx.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Dayglow design system — "night garden": deep ink-green canvas, electric lime primary,
+ * warm coral accent, plus sky / amber / rose habit hues. All colors are oklch.
+ */
+
+@theme inline {
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-lime: var(--lime);
+  --color-coral: var(--coral);
+  --color-sky: var(--sky);
+  --color-amber: var(--amber);
+  --color-rose: var(--rose);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+}
+
+:root {
+  --radius: 1.25rem;
+
+  --lime: oklch(0.91 0.2 128);
+  --coral: oklch(0.74 0.16 38);
+  --sky: oklch(0.8 0.12 215);
+  --amber: oklch(0.86 0.15 85);
+  --rose: oklch(0.76 0.15 8);
+
+  --background: oklch(0.145 0.018 165);
+  --foreground: oklch(0.965 0.015 120);
+  --surface: oklch(0.2 0.022 165 / 0.55);
+  --surface-strong: oklch(0.24 0.024 165 / 0.85);
+  --card: oklch(0.19 0.02 165);
+  --card-foreground: oklch(0.965 0.015 120);
+  --popover: oklch(0.2 0.022 165);
+  --popover-foreground: oklch(0.965 0.015 120);
+  --primary: var(--lime);
+  --primary-foreground: oklch(0.18 0.035 150);
+  --secondary: oklch(0.25 0.02 165);
+  --secondary-foreground: oklch(0.95 0.01 120);
+  --muted: oklch(0.24 0.018 165);
+  --muted-foreground: oklch(0.7 0.025 150);
+  --accent: var(--coral);
+  --accent-foreground: oklch(0.17 0.03 40);
+  --destructive: oklch(0.66 0.21 25);
+  --destructive-foreground: oklch(0.98 0.01 25);
+  --border: oklch(0.96 0.02 120 / 0.09);
+  --input: oklch(0.96 0.02 120 / 0.13);
+  --ring: oklch(0.91 0.2 128 / 0.6);
+
+  --chart-1: var(--lime);
+  --chart-2: var(--sky);
+  --chart-3: var(--coral);
+  --chart-4: var(--amber);
+  --chart-5: var(--rose);
+
+  --sidebar: oklch(0.18 0.02 165);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--lime);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --gradient-hero: linear-gradient(110deg, var(--lime) 0%, var(--amber) 35%, var(--coral) 65%, var(--lime) 100%);
+  --gradient-card: linear-gradient(160deg, oklch(0.24 0.025 165 / 0.75), oklch(0.17 0.02 165 / 0.55));
+  --shadow-card: inset 0 1px 0 0 oklch(1 0 0 / 0.06), 0 30px 60px -30px oklch(0 0 0 / 0.7);
+  --shadow-glow: 0 0 40px -6px color-mix(in oklab, var(--lime) 60%, transparent);
+  --ease-spring: cubic-bezier(0.22, 1.2, 0.36, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--lime) 40%, transparent);
+  }
+}
+
+/* ---------- Surfaces ---------- */
+
+@utility glass {
+  background: var(--gradient-card);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  border-radius: calc(var(--radius) + 8px);
+}
+
+/* Cursor-following glow + gradient rim. The card sets --mx / --my on mousemove. */
+@utility spotlight {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 0%),
+      color-mix(in oklab, var(--lime) 10%, transparent),
+      transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    pointer-events: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 0%),
+      color-mix(in oklab, var(--lime) 70%, transparent),
+      transparent 70%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@utility text-gradient {
+  background: var(--gradient-hero);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@utility grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 70%);
+}
+
+/* Habit hue helpers: element sets --hc to one of the habit color tokens. */
+@utility habit-tint {
+  background: color-mix(in oklab, var(--hc) 16%, transparent);
+  color: var(--hc);
+}
+@utility habit-fill {
+  background: var(--hc);
+  color: var(--primary-foreground);
+}
+@utility habit-glow {
+  box-shadow: 0 0 24px -4px color-mix(in oklab, var(--hc) 70%, transparent);
+}
+
+@utility glow-primary {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ---------- Motion ---------- */
+
+@utility animate-rise {
+  animation: rise 0.8s var(--ease-spring) both;
+}
+@utility animate-aurora-a {
+  animation: aurora-a 18s ease-in-out infinite;
+}
+@utility animate-aurora-b {
+  animation: aurora-b 22s ease-in-out infinite;
+}
+@utility animate-aurora-c {
+  animation: aurora-c 26s ease-in-out infinite;
+}
+@utility animate-spin-slow {
+  animation: spin 14s linear infinite;
+}
+@utility animate-burst {
+  animation: burst 0.7s ease-out forwards;
+}
+@utility animate-confetti {
+  animation: confetti-fall var(--dur, 3s) cubic-bezier(0.2, 0.6, 0.4, 1) var(--delay, 0s) forwards;
+}
+@utility animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes aurora-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18vw, 12vh) scale(1.25); }
+}
+@keyframes aurora-b {
+  0%, 100% { transform: translate(0, 0) scale(1.1); }
+  50% { transform: translate(-16vw, 18vh) scale(0.9); }
+}
+@keyframes aurora-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10vw, -14vh) scale(1.3); }
+}
+@keyframes burst {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-26px) scale(0.3);
+  }
+}
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 0px), 105vh, 0) rotate(var(--rot, 360deg));
+  }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
